@@ -8,7 +8,7 @@ The README references these files by exact name.
 | `02-contact-list.png` | ✅ Done — frame from the CRUD recording |
 | `03-add-contact.png` | ✅ Done — frame from the CRUD recording |
 | `04-invalid-input.png` | ⬜ **Needed** |
-| `05-mobile.png` | ⬜ **Needed** |
+| `05-mobile.png` | ✅ Done — real phone on the live URL (email redacted) |
 | `06-two-accounts.png` | ✅ Done — composed from clean frames of the two-account recording |
 
 ## The three still needed
@@ -16,9 +16,6 @@ The README references these files by exact name.
 **`04-invalid-input.png`** — Open **Add contact**, leave the name blank, click
 **Add contact**. Capture the red field and "Name is required." Nothing is sent
 to the server, which is the point.
-
-**`05-mobile.png`** — Open `/contacts` at a phone width (~375px; Chrome devtools
-responsive mode). The layout switches from a table to cards.
 
 The two-account property is also asserted automatically by
 `tests/rls.integration.test.ts`, so the screenshot corroborates the tests

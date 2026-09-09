@@ -57,6 +57,13 @@ Both were recorded against the live Vercel deployment.
 | ![Invalid sign-in](docs/screenshots/07-signin-error.png) | ![Two accounts](docs/screenshots/06-two-accounts.png) |
 | Bad credentials rejected with a clear message | User B cannot see User A's contacts |
 
+### On a phone
+
+Not a resized desktop window — the live deployment on an actual phone over 5G.
+The table layout gives way to cards, and every control stays reachable.
+
+<img src="docs/screenshots/05-mobile.png" width="300" alt="Metworking on a phone">
+
 ## Features
 
 - Email + password sign up, sign in, and sign out (Managed Better Auth)
