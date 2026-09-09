@@ -31,7 +31,7 @@ export default function ContactsPage() {
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3">
           <div className="min-w-0">
             <h1 className="text-lg font-semibold tracking-tight">
-              Networking Tracker
+              Metworking
             </h1>
             <p className="text-muted-foreground truncate text-xs">
               {user?.email}

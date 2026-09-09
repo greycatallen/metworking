@@ -1,4 +1,4 @@
-# Secure Networking Tracker
+# Metworking
 
 A private networking tracker for the people you meet at Berkeley. Each signed-in
 user keeps their own list of contacts — name, company, role, where you met,
@@ -117,7 +117,7 @@ produces a useful message rather than a raw Postgres error.
 
 ```bash
 git clone <repository-url>
-cd secure-networking-tracker
+cd metworking
 npm install
 cp .env.example .env.local   # then fill in the two public URLs
 npm run dev
