@@ -34,23 +34,26 @@ token, which is exactly what the automated tests demonstrate.
 
 ## Screenshots
 
-### Walkthrough: sign in and sign out
+### Walkthrough recordings
 
-**▶ [Watch the 24-second walkthrough](docs/demo-signin-signout.mov)** — signing in
-on the live site, the contact list loading, signing out, and landing back on the
-sign-in page.
+Both were recorded against the live Vercel deployment.
 
-[![Sign in](docs/screenshots/01-sign-in.png)](docs/demo-signin-signout.mov)
+| Recording | What it shows |
+| --- | --- |
+| **▶ [Sign in and sign out](docs/demo-signin-signout.mov)** (24s) | Signing in, the contact list loading, signing out, and landing back on the sign-in page |
+| **▶ [Add, edit, and delete a contact](docs/demo-contact-crud.mov)** (56s) | Creating a contact, editing its role and notes, and deleting it — each with its confirmation dialog and success toast |
 
-> GitHub does not play video inline in a README. Click the image or the link
-> above and GitHub renders a player on the file page.
+[![Contact list](docs/screenshots/02-contact-list.png)](docs/demo-contact-crud.mov)
+
+> GitHub does not play video inline in a README. Click a link above and GitHub
+> renders a player on the file page.
 
 ### Stills
 
 | | |
 | --- | --- |
-| ![Contact list](docs/screenshots/02-contact-list.png) | ![Add contact](docs/screenshots/03-add-contact.png) |
-| The contact list, sorted by priority | Adding a contact |
+| ![Sign in](docs/screenshots/01-sign-in.png) | ![Add contact](docs/screenshots/03-add-contact.png) |
+| The sign-in page | The Add contact dialog |
 | ![Invalid input](docs/screenshots/04-invalid-input.png) | ![Mobile](docs/screenshots/05-mobile.png) |
 | Invalid input failing safely | Mobile layout |
 | ![Two accounts](docs/screenshots/06-two-accounts.png) | |
@@ -332,7 +335,7 @@ GitHub, then run `vercel git connect` in this directory.
 | --- | --- |
 | Automated test output, ≥1 passing validation test | [`docs/test-output.txt`](docs/test-output.txt) — 29 passing |
 | Sign in and sign out | [`docs/demo-signin-signout.mov`](docs/demo-signin-signout.mov) — screen recording |
-| Create, edit, delete, refresh | `docs/screenshots/02-contact-list.png`, `03-add-contact.png` |
+| Create, edit, delete, refresh | [`docs/demo-contact-crud.mov`](docs/demo-contact-crud.mov) — screen recording |
 | Two-account privacy test | `docs/screenshots/06-two-accounts.png` + the 9 RLS tests |
 | Invalid input failing safely | `docs/screenshots/04-invalid-input.png` |
 | Schema and RLS explanation | [Database schema](#database-schema), [Authentication and RLS ownership](#authentication-and-rls-ownership) |

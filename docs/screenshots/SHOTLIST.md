@@ -1,22 +1,29 @@
 # Screenshot shot list
 
-The README references these six files by exact name. Drop them in this folder
-and the README images will resolve.
+The README references these files by exact name.
 
-| File | What to capture |
+| File | Status |
 | --- | --- |
-| `01-sign-in.png` | ✅ Done — extracted from the walkthrough recording. |
-| `02-contact-list.png` | `/contacts` with a few contacts, showing the sort/filter controls and the priority badges. |
-| `03-add-contact.png` | The **Add contact** dialog filled in, or the list right after saving with the "Contact added" toast visible. |
-| `04-invalid-input.png` | The Add contact dialog submitted with an **empty name** — shows the red field and "Name is required." Nothing is sent to the server. |
-| `05-mobile.png` | `/contacts` at a phone width (~375px). Use responsive mode in devtools. The layout switches from a table to cards. |
-| `06-two-accounts.png` | Two browsers (or one normal + one private window) side by side, signed in as the two test accounts, showing different contact lists. |
+| `01-sign-in.png` | ✅ Done — frame from the sign-in/sign-out recording |
+| `02-contact-list.png` | ✅ Done — frame from the CRUD recording |
+| `03-add-contact.png` | ✅ Done — frame from the CRUD recording |
+| `04-invalid-input.png` | ⬜ **Needed** |
+| `05-mobile.png` | ⬜ **Needed** |
+| `06-two-accounts.png` | ⬜ **Needed** |
 
-## Two-account test
+## The three still needed
 
-Credentials are in your git-ignored `.env.local` as `TEST_USER_A_*` and
-`TEST_USER_B_*`. Sign in as A in a normal window and B in a private window, add
-a contact as A, and confirm it never appears for B.
+**`04-invalid-input.png`** — Open **Add contact**, leave the name blank, click
+**Add contact**. Capture the red field and "Name is required." Nothing is sent
+to the server, which is the point.
 
-The same property is asserted automatically by `tests/rls.integration.test.ts`,
-so this screenshot is corroboration rather than the only proof.
+**`05-mobile.png`** — Open `/contacts` at a phone width (~375px; Chrome devtools
+responsive mode). The layout switches from a table to cards.
+
+**`06-two-accounts.png`** — Sign in as User A in a normal window and User B in a
+private window, side by side. A has contacts; B shows the empty state.
+Credentials are in your git-ignored `.env.local` (`TEST_USER_A_*`, `TEST_USER_B_*`).
+
+The two-account property is also asserted automatically by
+`tests/rls.integration.test.ts`, so this screenshot corroborates the tests
+rather than being the only proof.
