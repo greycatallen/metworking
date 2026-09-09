@@ -10,8 +10,8 @@ Level Security) and validity (CHECK constraints). A user cannot reach another
 user's data even by calling the REST endpoint directly with their own valid
 token, which is exactly what the automated tests demonstrate.
 
-- **Live app:** _TODO — Vercel URL_
-- **Repository:** _TODO — GitHub URL_
+- **Live app:** https://metworking.vercel.app
+- **Repository:** https://github.com/greycatallen/metworking
 
 ---
 
@@ -116,7 +116,7 @@ produces a useful message rather than a raw Postgres error.
 ## Local setup
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/greycatallen/metworking.git
 cd metworking
 npm install
 cp .env.example .env.local   # then fill in the two public URLs
@@ -274,15 +274,44 @@ The integration suite skips itself when the test-account variables are absent, s
 
 ## Deployment
 
-1. Push to GitHub.
-2. Import the repository into Vercel (framework preset: Next.js).
-3. Add `NEXT_PUBLIC_NEON_AUTH_URL` and `NEXT_PUBLIC_NEON_DATA_API_URL` as
-   production environment variables.
-4. **Add the deployed `.vercel.app` domain to Neon Auth's trusted domains.**
-   Sign-in fails on the live site without this.
-5. Redeploy so the environment variables are baked into the client bundle —
-   `NEXT_PUBLIC_` values are inlined at build time, not read at runtime.
-6. Open the public URL in a private window and re-run the two-account test.
+Deployed to Vercel from the CLI:
+
+```bash
+vercel link --yes --project metworking
+vercel env add NEXT_PUBLIC_NEON_AUTH_URL production --type config
+vercel env add NEXT_PUBLIC_NEON_DATA_API_URL production --type config
+vercel deploy --prod
+```
+
+Three details that are easy to get wrong:
+
+1. **`--type config` is required.** Vercel now refuses to set a `NEXT_PUBLIC_`
+   variable without stating whether it is a public `config` value or a private
+   `secret`. These two are genuinely public endpoints, so `config` is correct —
+   but the prompt is a good guard, and the answer for a connection string would
+   be different.
+2. **Add every deployed domain to Neon Auth's trusted domains.** Better Auth
+   validates the request `Origin`. Registered here: `http://localhost:3000`,
+   `https://metworking.vercel.app`, and `https://metworking-allen-code1.vercel.app`.
+   Sign-in fails silently on any origin that is not listed.
+3. **Set the environment variables before building.** `NEXT_PUBLIC_` values are
+   inlined into the client bundle at build time, not read at runtime, so adding
+   them after a deploy has no effect until you redeploy.
+
+### Continuous deployment is not connected
+
+`vercel git connect` currently fails with *"You need to add a Login Connection
+to your GitHub account first"*, so pushes to `main` do **not** redeploy
+automatically. Deploys are manual (`vercel deploy --prod`) until that is
+connected. To enable it: Vercel → Account Settings → Login Connections → connect
+GitHub, then run `vercel git connect` in this directory.
+
+### Verified on the live URL
+
+- Sign in, sign out, and the signed-out route guard
+- Contacts load, persist across refresh, and sort by priority
+- Two-account privacy: signed in as User B on the production site, none of User
+  A's contacts are visible and the empty state renders instead
 
 ## Grading evidence
 
