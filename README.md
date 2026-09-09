@@ -54,10 +54,8 @@ Both were recorded against the live Vercel deployment.
 | --- | --- |
 | ![Sign in](docs/screenshots/01-sign-in.png) | ![Add contact](docs/screenshots/03-add-contact.png) |
 | The sign-in page | The Add contact dialog |
-| ![Invalid input](docs/screenshots/04-invalid-input.png) | ![Mobile](docs/screenshots/05-mobile.png) |
-| Invalid input failing safely | Mobile layout |
-| ![Two accounts](docs/screenshots/06-two-accounts.png) | |
-| User B cannot see User A's contacts | |
+| ![Invalid sign-in](docs/screenshots/07-signin-error.png) | ![Two accounts](docs/screenshots/06-two-accounts.png) |
+| Bad credentials rejected with a clear message | User B cannot see User A's contacts |
 
 ## Features
 
@@ -337,7 +335,7 @@ GitHub, then run `vercel git connect` in this directory.
 | Sign in and sign out | [`docs/demo-signin-signout.mov`](docs/demo-signin-signout.mov) — screen recording |
 | Create, edit, delete, refresh | [`docs/demo-contact-crud.mov`](docs/demo-contact-crud.mov) — screen recording |
 | Two-account privacy test | `docs/screenshots/06-two-accounts.png` + the 9 RLS tests |
-| Invalid input failing safely | `docs/screenshots/04-invalid-input.png` |
+| Invalid input failing safely | `docs/screenshots/07-signin-error.png` (bad credentials), plus the 9 Postgres validation tests in [`docs/test-output.txt`](docs/test-output.txt) covering blank names, over-length names, and invalid priorities |
 | Schema and RLS explanation | [Database schema](#database-schema), [Authentication and RLS ownership](#authentication-and-rls-ownership) |
 | No committed secrets | `.env.example` holds placeholders only; `.env*` is git-ignored except the template |
 
