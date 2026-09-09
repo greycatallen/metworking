@@ -1,0 +1,36 @@
+$ npm test
+
+ RUN  v5.0.0 /Users/allensmacii/Documents/assignment 1
+ ✓ src/lib/validation.test.ts > isPriority > accepts exactly the three allowed values 1ms
+ ✓ src/lib/validation.test.ts > isPriority > rejects anything else, including near misses 0ms
+ ✓ src/lib/validation.test.ts > validateContact > accepts a minimal valid contact 0ms
+ ✓ src/lib/validation.test.ts > validateContact > rejects an empty name 0ms
+ ✓ src/lib/validation.test.ts > validateContact > rejects a whitespace-only name, matching contacts_name_not_blank 0ms
+ ✓ src/lib/validation.test.ts > validateContact > rejects a missing name 0ms
+ ✓ src/lib/validation.test.ts > validateContact > rejects a name over the database length limit 0ms
+ ✓ src/lib/validation.test.ts > validateContact > accepts a name exactly at the limit 0ms
+ ✓ src/lib/validation.test.ts > validateContact > rejects an invalid priority 0ms
+ ✓ src/lib/validation.test.ts > validateContact > rejects a priority with the wrong case rather than silently coercing 0ms
+ ✓ src/lib/validation.test.ts > validateContact > rejects a missing priority instead of defaulting 0ms
+ ✓ src/lib/validation.test.ts > validateContact > reports every invalid field at once 0ms
+ ✓ src/lib/validation.test.ts > validateContact > trims the name and optional fields 0ms
+ ✓ src/lib/validation.test.ts > validateContact > normalises blank optional fields to null so the column stays empty 0ms
+ ✓ src/lib/validation.test.ts > validateContact > never returns a user_id: ownership is the database's job 0ms
+ ✓ tests/rls.integration.test.ts > contacts Row Level Security > gives the two accounts different identities 2ms
+ ✓ tests/rls.integration.test.ts > contacts Row Level Security > stamps user_id from the JWT, not from client input 0ms
+ ✓ tests/rls.integration.test.ts > contacts Row Level Security > lets User A read their own contact 34ms
+ ✓ tests/rls.integration.test.ts > contacts Row Level Security > hides User A's contact from User B 32ms
+ ✓ tests/rls.integration.test.ts > contacts Row Level Security > stops User B from updating User A's contact 65ms
+ ✓ tests/rls.integration.test.ts > contacts Row Level Security > stops User B from deleting User A's contact 66ms
+ ✓ tests/rls.integration.test.ts > contacts Row Level Security > stops User A from handing a row to User B (UPDATE WITH CHECK) 67ms
+ ✓ tests/rls.integration.test.ts > contacts Row Level Security > stops a user from inserting a row owned by someone else 32ms
+ ✓ tests/rls.integration.test.ts > contacts Row Level Security > refuses unauthenticated reads 29ms
+ ✓ tests/rls.integration.test.ts > contacts validation enforced by Postgres > rejects an invalid priority even when sent straight to the API 32ms
+ ✓ tests/rls.integration.test.ts > contacts validation enforced by Postgres > rejects an empty name 32ms
+ ✓ tests/rls.integration.test.ts > contacts validation enforced by Postgres > rejects a whitespace-only name 33ms
+ ✓ tests/rls.integration.test.ts > contacts validation enforced by Postgres > rejects a name longer than the column allows 32ms
+ ✓ tests/rls.integration.test.ts > contacts validation enforced by Postgres > refuses to let a client write the generated priority_rank column 33ms
+ Test Files  2 passed (2)
+      Tests  29 passed (29)
+   Start at  20:50:19
+   Duration  3.13s (tests 98%, transform 2%)

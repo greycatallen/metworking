@@ -27,23 +27,50 @@ const configured = Boolean(
 // Better Auth checks Origin against the project's trusted domains.
 const ORIGIN = "http://localhost:3000";
 
+/**
+ * One JWT per account per run. Better Auth rate-limits sign-in, so re-running
+ * the suite would otherwise start failing with HTTP 429 rather than telling you
+ * anything about RLS. Tokens live ~15 minutes, comfortably longer than a run.
+ */
+const tokenCache = new Map<string, string>();
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
 async function signIn(email: string, password: string): Promise<string> {
-  const signInRes = await fetch(`${AUTH_URL}/sign-in/email`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Origin: ORIGIN },
-    body: JSON.stringify({ email, password }),
-  });
-  if (!signInRes.ok) {
-    throw new Error(`sign-in failed for ${email}: HTTP ${signInRes.status}`);
+  const cached = tokenCache.get(email);
+  if (cached) return cached;
+
+  let lastStatus = 0;
+  for (const backoffMs of [0, 2_000, 5_000]) {
+    if (backoffMs) await sleep(backoffMs);
+
+    const signInRes = await fetch(`${AUTH_URL}/sign-in/email`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Origin: ORIGIN },
+      body: JSON.stringify({ email, password }),
+    });
+
+    lastStatus = signInRes.status;
+    if (signInRes.status === 429) continue; // rate limited — wait and retry
+    if (!signInRes.ok) {
+      throw new Error(`sign-in failed for ${email}: HTTP ${signInRes.status}`);
+    }
+
+    const cookie = signInRes.headers.getSetCookie().join("; ");
+    const sessionRes = await fetch(`${AUTH_URL}/get-session`, {
+      headers: { Cookie: cookie, Origin: ORIGIN },
+    });
+    const jwt = sessionRes.headers.get("set-auth-jwt");
+    if (!jwt) throw new Error(`no JWT issued for ${email}`);
+
+    tokenCache.set(email, jwt);
+    return jwt;
   }
 
-  const cookie = signInRes.headers.getSetCookie().join("; ");
-  const sessionRes = await fetch(`${AUTH_URL}/get-session`, {
-    headers: { Cookie: cookie, Origin: ORIGIN },
-  });
-  const jwt = sessionRes.headers.get("set-auth-jwt");
-  if (!jwt) throw new Error(`no JWT issued for ${email}`);
-  return jwt;
+  throw new Error(
+    `sign-in for ${email} kept returning HTTP ${lastStatus} after retries. ` +
+      `Managed Better Auth rate-limits sign-in; wait a minute and re-run.`,
+  );
 }
 
 interface DbResponse {
