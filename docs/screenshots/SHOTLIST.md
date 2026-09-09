@@ -5,7 +5,7 @@ and the README images will resolve.
 
 | File | What to capture |
 | --- | --- |
-| `01-sign-in.png` | The sign-in page at `/sign-in`. Capture the signed-out state; a second shot after clicking **Sign out** proves the round trip. |
+| `01-sign-in.png` | ✅ Done — extracted from the walkthrough recording. |
 | `02-contact-list.png` | `/contacts` with a few contacts, showing the sort/filter controls and the priority badges. |
 | `03-add-contact.png` | The **Add contact** dialog filled in, or the list right after saving with the "Contact added" toast visible. |
 | `04-invalid-input.png` | The Add contact dialog submitted with an **empty name** — shows the red field and "Name is required." Nothing is sent to the server. |

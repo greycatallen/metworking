@@ -34,14 +34,27 @@ token, which is exactly what the automated tests demonstrate.
 
 ## Screenshots
 
+### Walkthrough: sign in and sign out
+
+**▶ [Watch the 24-second walkthrough](docs/demo-signin-signout.mov)** — signing in
+on the live site, the contact list loading, signing out, and landing back on the
+sign-in page.
+
+[![Sign in](docs/screenshots/01-sign-in.png)](docs/demo-signin-signout.mov)
+
+> GitHub does not play video inline in a README. Click the image or the link
+> above and GitHub renders a player on the file page.
+
+### Stills
+
 | | |
 | --- | --- |
-| ![Sign in](docs/screenshots/01-sign-in.png) | ![Contact list](docs/screenshots/02-contact-list.png) |
-| Sign in / sign up | The contact list, sorted by priority |
-| ![Add contact](docs/screenshots/03-add-contact.png) | ![Invalid input](docs/screenshots/04-invalid-input.png) |
-| Adding a contact | Invalid input failing safely |
-| ![Mobile](docs/screenshots/05-mobile.png) | ![Two accounts](docs/screenshots/06-two-accounts.png) |
-| Mobile layout | User B cannot see User A's contacts |
+| ![Contact list](docs/screenshots/02-contact-list.png) | ![Add contact](docs/screenshots/03-add-contact.png) |
+| The contact list, sorted by priority | Adding a contact |
+| ![Invalid input](docs/screenshots/04-invalid-input.png) | ![Mobile](docs/screenshots/05-mobile.png) |
+| Invalid input failing safely | Mobile layout |
+| ![Two accounts](docs/screenshots/06-two-accounts.png) | |
+| User B cannot see User A's contacts | |
 
 ## Features
 
@@ -318,7 +331,7 @@ GitHub, then run `vercel git connect` in this directory.
 | Requirement | Where |
 | --- | --- |
 | Automated test output, ≥1 passing validation test | [`docs/test-output.txt`](docs/test-output.txt) — 29 passing |
-| Sign in and sign out | `docs/screenshots/01-sign-in.png` |
+| Sign in and sign out | [`docs/demo-signin-signout.mov`](docs/demo-signin-signout.mov) — screen recording |
 | Create, edit, delete, refresh | `docs/screenshots/02-contact-list.png`, `03-add-contact.png` |
 | Two-account privacy test | `docs/screenshots/06-two-accounts.png` + the 9 RLS tests |
 | Invalid input failing safely | `docs/screenshots/04-invalid-input.png` |
